@@ -3,75 +3,68 @@ from abc import ABCMeta, abstractmethod
 
 
 # Abstract class
-class CheckLabel(metaclass=ABCMeta):
+class CheckLabelRule(metaclass=ABCMeta):
 	"""
-	Base of check handler abstract.
+	Abstract of the check conditions.
 	"""
 
-	def __init__(self, nextCheckRule):
-		self._nextRule = nextCheckRule
+	def __init__(self, nextRule):
+		self.__checkRule = nextRule
+
+	def Checking(self, label):
+		if self.isMyResp(label):
+			self.doCheck(label)
+		# If I take off this else, the process will be processed to the end.
+		# You can adjust by yourself, what the kind of case you wanna do.
+		else:
+			if self.__checkRule is not None:
+				self.__checkRule.Checking(label)
+			else:
+				print('Finished check')
 
 	@abstractmethod
-	def Checking(self, label):
+	def doCheck(self, label):
+		...
+
+	@abstractmethod
+	def isMyResp(self, label):
 		...
 
 
-class CheckLength(CheckLabel):
-	"""
-	One of the checking condition. For string length.
-	"""
+class CheckLength(CheckLabelRule):
+	def isMyResp(self, label):
+		return label.name == 'tel_label'
 
-	def Checking(self, label):
-		if len(label.content) > 10:
-			print("Ok you passed length!!")
+	def doCheck(self, label):
+		if len(label.content) <= 6 or len(label.content) >= 20:
+			print("over the length range.")
 		else:
-			if self._nextRule is not None:
-				self._nextRule.Checking(label)
+			print("you pass the length testing")
 
 
-class CheckBigAlphabet(CheckLabel):
-	"""
-	One of the checking condition. For big alphabet.
-	"""
+class CheckBigAlphabet(CheckLabelRule):
+	def isMyResp(self, label):
+		return label.name == 'name_label'
 
-	def Checking(self, label):
-		if label.content.isupper():
-			print("Ok you passed upper!!")
+	def doCheck(self, label):
+		if not label.content.isupper():
+			print("you have to set big alphabet string")
 		else:
-			if self._nextRule is not None:
-				self._nextRule.Checking(label)
-			else:
-				print("no any pass!!!!")
+			print("you pass the alphabet testing")
 
 
-class SpecialLabel:
-	"""
-	The object is be applied.
-	"""
-
-	def __init__(self, content):
-		self.__content = content
-
-	@property
-	def content(self):
-		return self.__content
-
-	@content.setter
-	def content(self, value):
-		self.__content = value
+# Client object
+class Label:
+	def __init__(self, name, content):
+		self.name = name
+		self.content = content
 
 
 def main():
-	s1 = SpecialLabel("no")
-	s2 = SpecialLabel("Oh suck man")
-	s3 = SpecialLabel("SUPERMAN")
+	rule = CheckLength(CheckBigAlphabet(None))
 
-	checking = CheckLength(CheckBigAlphabet(None))
-	checking.Checking(s1)
-
-	checking.Checking(s2)
-
-	checking.Checking(s3)
+	rule.Checking(Label("tel_label", "12345678"))
+	rule.Checking(Label("name_label", "abcdef"))
 
 
 if __name__ == '__main__':
