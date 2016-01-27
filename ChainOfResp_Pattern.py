@@ -22,16 +22,23 @@ class CheckLabelRule(metaclass=ABCMeta):
 			else:
 				print('Finished check')
 
+	# Do something which the case needs to do.
 	@abstractmethod
 	def doCheck(self, label):
 		...
 
+	# Checking who will do something.
 	@abstractmethod
 	def isMyResp(self, label):
 		...
 
 
+# Checking condition.
 class CheckLength(CheckLabelRule):
+	"""
+	One of the checking condition. For string length.
+	"""
+
 	def isMyResp(self, label):
 		return label.name == 'tel_label'
 
@@ -42,7 +49,12 @@ class CheckLength(CheckLabelRule):
 			print("you pass the length testing")
 
 
+# Checking condition.
 class CheckBigAlphabet(CheckLabelRule):
+	"""
+	One of the checking condition. For big alphabet.
+	"""
+
 	def isMyResp(self, label):
 		return label.name == 'name_label'
 
@@ -55,6 +67,10 @@ class CheckBigAlphabet(CheckLabelRule):
 
 # Client object
 class Label:
+	"""
+	The object is checked by chain of resp.
+	"""
+
 	def __init__(self, name, content):
 		self.name = name
 		self.content = content
