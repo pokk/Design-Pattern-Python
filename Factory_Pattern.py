@@ -8,78 +8,78 @@ class IBeverageProvider(metaclass=ABCMeta):
 	"""
 
 	@abstractmethod
-	def AddMaterial(self):
+	def add_material(self):
 		...
 
 	@abstractmethod
-	def Brew(self):
+	def brew(self):
 		...
 
 	@abstractmethod
-	def PouredCup(self):
+	def poured_cup(self):
 		...
 
 
 class GreenTea(IBeverageProvider):
-	def PouredCup(self):
+	def poured_cup(self):
 		print('poured green tea to the cup')
 		pass
 
-	def AddMaterial(self):
+	def add_material(self):
 		print('add the green tea')
 		pass
 
-	def Brew(self):
+	def brew(self):
 		print('brew the hot water into green tea cup')
 		pass
 
 
 class BlackTea(IBeverageProvider):
-	def PouredCup(self):
+	def poured_cup(self):
 		print('poured black tea to the cup')
 		pass
 
-	def AddMaterial(self):
+	def add_material(self):
 		print('add the black tea')
 		pass
 
-	def Brew(self):
+	def brew(self):
 		print('brew the hot water into black tea cup')
 		pass
 
 
 class MilkTea(IBeverageProvider):
-	def PouredCup(self):
+	def poured_cup(self):
 		print('poured milk tea to the cup')
 		pass
 
-	def AddMaterial(self):
+	def add_material(self):
 		print('add the milk tea')
 		pass
 
-	def Brew(self):
+	def brew(self):
 		print('brew the hot water into milk tea cup')
 		pass
 
 
 class IFactory(metaclass=ABCMeta):
 	@abstractmethod
-	def CreateBerverage(self):
+	def create_beverage(self):
 		...
 
 
 class GreenTeaFactory(IFactory):
-	def CreateBerverage(self):
+	def create_beverage(self):
 		return GreenTea()
 
 
 class BlackTeaFactory(IFactory):
-	def CreateBerverage(self):
+	def create_beverage(self):
 		return BlackTea()
 
 
 class MilkTeaFactory(IFactory):
-	def CreateBerverage(self):
+	def create_beverage(self):
 		return MilkTea()
 
 
@@ -87,20 +87,20 @@ class BeverageStore:
 	def __init__(self, factory):
 		self.__factory = factory
 
-	def OrderBeverage(self):
-		self.beverage = self.__factory.CreateBerverage()
+	def order_beverage(self):
+		self.beverage = self.__factory.create_beverage()
 
-		self.beverage.AddMaterial()
-		self.beverage.Brew()
-		self.beverage.PouredCup()
+		self.beverage.add_material()
+		self.beverage.brew()
+		self.beverage.poured_cup()
 
 
 def main():
 	store = BeverageStore(MilkTeaFactory())
-	store.OrderBeverage()
-	
+	store.order_beverage()
+
 	store = BeverageStore(GreenTeaFactory())
-	store.OrderBeverage()
+	store.order_beverage()
 
 
 if __name__ == '__main__':

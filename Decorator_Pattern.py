@@ -11,7 +11,7 @@ class Meal(metaclass=ABCMeta):
 		...
 
 	@abstractmethod
-	def getContent(self):
+	def get_content(self):
 		...
 
 
@@ -22,7 +22,7 @@ class FriedChicken(Meal):
 	def price(self):
 		return 49.0
 
-	def getContent(self):
+	def get_content(self):
 		return 'Fried Chicken'
 
 
@@ -33,7 +33,7 @@ class Hamburger(Meal):
 	def price(self):
 		return 99.0
 
-	def getContent(self):
+	def get_content(self):
 		return 'Crab Hamburger'
 
 
@@ -55,8 +55,8 @@ class Salad(SideDish):
 	def price(self):
 		return self._meal.price() + 10.0
 
-	def getContent(self):
-		return self._meal.getContent() + ', Salad'
+	def get_content(self):
+		return self._meal.get_content() + ', Salad'
 
 
 class Coke(SideDish):
@@ -69,17 +69,17 @@ class Coke(SideDish):
 	def price(self):
 		return self._meal.price() + 15.0
 
-	def getContent(self):
-		return self._meal.getContent() + ', Coke'
+	def get_content(self):
+		return self._meal.get_content() + ', Coke'
 
 
 def main():
 	meal = FriedChicken()
-	print("meal : %s ; price : %f" % (meal.getContent(), meal.price()))
+	print("meal : %s ; price : %f" % (meal.get_content(), meal.price()))
 	meal = Salad(meal)
-	print("meal : %s ; price : %f" % (meal.getContent(), meal.price()))
+	print("meal : %s ; price : %f" % (meal.get_content(), meal.price()))
 	meal = Coke(meal)
-	print("meal : %s ; price : %f" % (meal.getContent(), meal.price()))
+	print("meal : %s ; price : %f" % (meal.get_content(), meal.price()))
 
 
 if __name__ == '__main__':

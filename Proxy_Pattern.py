@@ -5,13 +5,13 @@ from abc import ABCMeta
 
 # abstract
 class IGiveGit(metaclass=ABCMeta):
-	def GiveEyes(self):
+	def give_eyes(self):
 		...
 
-	def GiveFoots(self):
+	def give_foots(self):
 		...
 
-	def GiveArms(self):
+	def give_arms(self):
 		...
 
 
@@ -22,13 +22,13 @@ class PoorPursuit(IGiveGit):
 	def __init__(self, girl):
 		self.woman = girl
 
-	def GiveEyes(self):
+	def give_eyes(self):
 		print("送給 " + self.woman.get_name() + " 我的眼啦，都給你啦")
 
-	def GiveFoots(self):
+	def give_foots(self):
 		print("送給 " + self.woman.get_name() + " 我的雙腳啦，都給你啦")
 
-	def GiveArms(self):
+	def give_arms(self):
 		print("送給 " + self.woman.get_name() + " 我的手啦，通通都給你啦")
 
 
@@ -39,14 +39,14 @@ class ProxyMan(IGiveGit):
 	def __init__(self, girl):
 		self.ggMan = PoorPursuit(girl)
 
-	def GiveEyes(self):
-		self.ggMan.GiveEyes()
+	def give_eyes(self):
+		self.ggMan.give_eyes()
 
-	def GiveFoots(self):
-		self.ggMan.GiveFoots()
+	def give_foots(self):
+		self.ggMan.give_foots()
 
-	def GiveArms(self):
-		self.ggMan.GiveArms()
+	def give_arms(self):
+		self.ggMan.give_arms()
 
 
 # hot girl
@@ -66,9 +66,9 @@ def main():
 
 	proxy = ProxyMan(girl)
 
-	proxy.GiveEyes()
-	proxy.GiveFoots()
-	proxy.GiveArms()
+	proxy.give_eyes()
+	proxy.give_foots()
+	proxy.give_arms()
 
 	pass
 

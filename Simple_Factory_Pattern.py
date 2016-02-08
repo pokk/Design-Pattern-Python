@@ -51,7 +51,7 @@ class BlackTea(IBeverageProvider):
 
 # Factory
 class SimpleBeverageFactory:
-	def CreateBeverage(self, beverageType):
+	def create_beverage(self, beverageType):
 		if beverageType is 'GreenTea':
 			self._beverage = GreenTea()
 		elif beverageType is 'BlackTea':
@@ -66,19 +66,19 @@ class BeverageStore():
 	def __init__(self, factory):
 		self.__factory = factory
 
-	def BeverageOrder(self, beverageType):
-		self.beverage = self.__factory.CreateBeverage(beverageType)
+	def beverage_order(self, beverageType):
+		self.beverage = self.__factory.create_beverage(beverageType)
 
-		self.beverage.AddMaterial()
-		self.beverage.Brew()
-		self.beverage.PouredCup()
+		self.beverage.add_material()
+		self.beverage.brew()
+		self.beverage.poured_cup()
 
 
 def main():
 	store = BeverageStore(SimpleBeverageFactory())
-	store.BeverageOrder('GreenTea')
+	store.beverage_order('GreenTea')
 	print('--------------------')
-	store.BeverageOrder('BlackTea')
+	store.beverage_order('BlackTea')
 
 
 if __name__ == '__main__':

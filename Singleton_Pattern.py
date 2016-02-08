@@ -24,8 +24,8 @@ class Borg:
 		self.__dict__ = self.__share_state
 
 
-# Classic Singlton's example
-def Singleton_ex():
+# Classic Singleton's example
+def singleton_ex():
 	s1 = Singleton()
 	s1.name = 'Singleton'
 	s2 = Singleton()
@@ -39,7 +39,7 @@ def Singleton_ex():
 
 
 # Borg pattern(Google Singleton)'s example
-def Borg_ex():
+def borg_ex():
 	b1 = Borg()
 	b1.name = 'Borg'
 	b2 = Borg()
@@ -56,8 +56,8 @@ def Borg_ex():
 def main(pattern):
 	ex = pattern
 	{
-		1: lambda: Borg_ex(),
-		2: lambda: Singleton_ex(),
+		1: lambda: borg_ex(),
+		2: lambda: singleton_ex(),
 	}.get(pattern, lambda: None)()
 
 
