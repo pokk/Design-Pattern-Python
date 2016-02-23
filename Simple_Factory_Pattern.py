@@ -9,52 +9,52 @@ class IBeverageProvider(metaclass=ABCMeta):
     """
 
     @abstractmethod
-    def AddMaterial(self):
-        ...
+    def add_material(self):
+        pass
 
     @abstractmethod
-    def Brew(self):
-        ...
+    def brew(self):
+        pass
 
     @abstractmethod
-    def PouredCup(self):
-        ...
+    def poured_cup(self):
+        pass
 
 
 class GreenTea(IBeverageProvider):
-    def PouredCup(self):
+    def poured_cup(self):
         print('poured green tea to the cup')
         pass
 
-    def AddMaterial(self):
+    def add_material(self):
         print('add the green tea')
         pass
 
-    def Brew(self):
+    def brew(self):
         print('brew the hot water into green tea cup')
         pass
 
 
 class BlackTea(IBeverageProvider):
-    def PouredCup(self):
+    def poured_cup(self):
         print('poured black tea to the cup')
         pass
 
-    def AddMaterial(self):
+    def add_material(self):
         print('add the black tea')
         pass
 
-    def Brew(self):
+    def brew(self):
         print('brew the hot water into black tea cup')
         pass
 
 
 # Factory
 class SimpleBeverageFactory:
-    def create_beverage(self, beverageType):
-        if beverageType is 'GreenTea':
+    def create_beverage(self, beverage_type):
+        if beverage_type is 'GreenTea':
             self._beverage = GreenTea()
-        elif beverageType is 'BlackTea':
+        elif beverage_type is 'BlackTea':
             self._beverage = BlackTea()
         else:
             pass
@@ -66,12 +66,12 @@ class BeverageStore():
     def __init__(self, factory):
         self.__factory = factory
 
-    def beverage_order(self, beverageType):
-        self.beverage = self.__factory.create_beverage(beverageType)
+    def beverage_order(self, beverage_type):
+        beverage = self.__factory.create_beverage(beverage_type)
 
-        self.beverage.add_material()
-        self.beverage.brew()
-        self.beverage.poured_cup()
+        beverage.add_material()
+        beverage.brew()
+        beverage.poured_cup()
 
 
 def main():

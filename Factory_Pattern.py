@@ -9,15 +9,15 @@ class IBeverageProvider(metaclass=ABCMeta):
 
     @abstractmethod
     def add_material(self):
-        ...
+        pass
 
     @abstractmethod
     def brew(self):
-        ...
+        pass
 
     @abstractmethod
     def poured_cup(self):
-        ...
+        pass
 
 
 class GreenTea(IBeverageProvider):
@@ -65,7 +65,7 @@ class MilkTea(IBeverageProvider):
 class IFactory(metaclass=ABCMeta):
     @abstractmethod
     def create_beverage(self):
-        ...
+        pass
 
 
 class GreenTeaFactory(IFactory):
@@ -88,11 +88,11 @@ class BeverageStore:
         self.__factory = factory
 
     def order_beverage(self):
-        self.beverage = self.__factory.create_beverage()
+        beverage = self.__factory.create_beverage()
 
-        self.beverage.add_material()
-        self.beverage.brew()
-        self.beverage.poured_cup()
+        beverage.add_material()
+        beverage.brew()
+        beverage.poured_cup()
 
 
 def main():

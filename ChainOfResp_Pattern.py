@@ -25,12 +25,12 @@ class CheckLabelRule(metaclass=ABCMeta):
     # Do something which the case needs to do.
     @abstractmethod
     def do_check(self, label):
-        ...
+        pass
 
     # checking who will do something.
     @abstractmethod
     def is_my_resp(self, label):
-        ...
+        pass
 
 
 # checking condition.

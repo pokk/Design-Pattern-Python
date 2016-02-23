@@ -6,13 +6,13 @@ from abc import ABCMeta
 # abstract
 class IGiveGit(metaclass=ABCMeta):
     def give_eyes(self):
-        ...
+        pass
 
     def give_foots(self):
-        ...
+        pass
 
     def give_arms(self):
-        ...
+        pass
 
 
 # idiot man

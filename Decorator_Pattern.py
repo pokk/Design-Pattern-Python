@@ -9,11 +9,11 @@ class Meal(metaclass=ABCMeta):
 
     @abstractmethod
     def price(self):
-        ...
+        pass
 
     @abstractmethod
     def get_content(self):
-        ...
+        pass
 
 
 class FriedChicken(Meal):

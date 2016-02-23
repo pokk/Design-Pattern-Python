@@ -6,7 +6,7 @@ from abc import ABCMeta
 # observer base class
 class Observer(metaclass=ABCMeta):
     def update(self):
-        ...
+        pass
 
 
 # if observer was added, just create a new class to inherit base class
