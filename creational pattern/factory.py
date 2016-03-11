@@ -62,6 +62,7 @@ class MilkTea(IBeverageProvider):
         pass
 
 
+# Factory
 class IFactory(metaclass=ABCMeta):
     @abstractmethod
     def create_beverage(self):
@@ -83,6 +84,7 @@ class MilkTeaFactory(IFactory):
         return MilkTea()
 
 
+# Store
 class BeverageStore:
     def __init__(self, factory):
         self.__factory = factory

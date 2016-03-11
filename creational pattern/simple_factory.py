@@ -62,6 +62,7 @@ class SimpleBeverageFactory:
         return self._beverage
 
 
+# Store
 class BeverageStore():
     def __init__(self, factory):
         self.__factory = factory
