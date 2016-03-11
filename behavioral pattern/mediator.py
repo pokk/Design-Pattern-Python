@@ -3,12 +3,22 @@ from abc import ABCMeta, abstractmethod
 
 
 class Mediator(metaclass=ABCMeta):
+    """
+    Mediator class. Connection of all Person class.
+    """
+
     @abstractmethod
     def contact(self, sender, msg):
         pass
 
 
 class Person(metaclass=ABCMeta):
+    """
+    Basic Person class.
+    Each of Person have to keep a mediator for connecting
+    each other.
+    """
+
     def __init__(self, name, mediator):
         self.mediator = mediator
         self.name = name
@@ -27,7 +37,7 @@ class Owner(Person):
         self.mediator.register_owner(self)
 
     def get_message(self, msg):
-        print('Owner', self.name, 'get msg:', msg)
+        print('Owner', self.name, ', get a msg:', msg)
 
 
 class Renter(Person):
@@ -36,7 +46,7 @@ class Renter(Person):
         self.mediator.register_renter(self)
 
     def get_message(self, msg):
-        print('Renter', self.name, 'get msg:', msg)
+        print('Renter', self.name, ', get a msg:', msg)
 
 
 class RealEstateBroker(Mediator):
@@ -48,7 +58,7 @@ class RealEstateBroker(Mediator):
         if sender is self.owner:
             self.renter.get_message(msg)
         elif sender is self.renter:
-            self.renter.get_message(msg)
+            self.owner.get_message(msg)
 
     def register_owner(self, owner):
         self.owner = owner
