@@ -27,13 +27,13 @@ class CheckLabelRule(metaclass=ABCMeta):
     def do_check(self, label):
         pass
 
-    # checking who will do something.
+    # Checking who will do something.
     @abstractmethod
     def is_my_resp(self, label):
         pass
 
 
-# checking condition.
+# Checking condition.
 class CheckLength(CheckLabelRule):
     """
     One of the checking condition. For string length.
@@ -49,7 +49,7 @@ class CheckLength(CheckLabelRule):
             print("you pass the length testing")
 
 
-# checking condition.
+# Checking condition.
 class CheckBigAlphabet(CheckLabelRule):
     """
     One of the checking condition. For big alphabet.
