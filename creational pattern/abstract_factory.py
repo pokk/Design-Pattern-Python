@@ -20,6 +20,7 @@ class IBeverageProvider(metaclass=ABCMeta):
         pass
 
 
+# Product A interface.
 class IBeverageTea(IBeverageProvider):
     @abstractmethod
     def add_material(self):
@@ -62,6 +63,7 @@ class MilkTea(IBeverageTea):
         pass
 
 
+# Product B interface.
 class IBeverageCoffee(IBeverageProvider):
     @abstractmethod
     def add_material(self):
@@ -104,6 +106,7 @@ class Cappuccino(IBeverageCoffee):
         pass
 
 
+# Factory.
 class IFactory(metaclass=ABCMeta):
     @abstractmethod
     def create_tea(self):
@@ -155,8 +158,8 @@ class FiftyStore:
 
 
 def main():
-    quikcly_store = QuicklyStore()
-    quikcly_store.order_beverage_coffee()
+    quickly_store = QuicklyStore()
+    quickly_store.order_beverage_coffee()
 
     hk_store = FiftyStore()
     hk_store.order_beverage_tea()

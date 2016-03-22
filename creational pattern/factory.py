@@ -20,6 +20,7 @@ class IBeverageProvider(metaclass=ABCMeta):
         pass
 
 
+# Product
 class GreenTea(IBeverageProvider):
     def poured_cup(self):
         print('poured green tea to the cup')
