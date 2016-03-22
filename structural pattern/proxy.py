@@ -1,74 +1,74 @@
 __author__ = 'pi'
 
-from abc import ABCMeta
+from abc import ABCMeta, abstractmethod
 
 
 # abstract
 class IGiveGit(metaclass=ABCMeta):
-    def give_eyes(self):
+    @abstractmethod
+    def give_glasses(self):
         pass
 
-    def give_foots(self):
+    @abstractmethod
+    def give_boots(self):
         pass
 
-    def give_arms(self):
+    @abstractmethod
+    def give_gloves(self):
         pass
 
 
 # idiot man
 class PoorPursuit(IGiveGit):
-    woman = None
-
     def __init__(self, girl):
         self.woman = girl
 
-    def give_eyes(self):
-        print("送給 " + self.woman.get_name() + " 我的眼啦，都給你啦")
+    def give_glasses(self):
+        print('send', self.woman.get_name(), 'sun glasses')
 
-    def give_foots(self):
-        print("送給 " + self.woman.get_name() + " 我的雙腳啦，都給你啦")
+    def give_boots(self):
+        print('send', self.woman.get_name(), 'boots')
 
-    def give_arms(self):
-        print("送給 " + self.woman.get_name() + " 我的手啦，通通都給你啦")
+    def give_gloves(self):
+        print('send', self.woman.get_name(), 'heart gloves')
 
 
 # proxy man
 class ProxyMan(IGiveGit):
-    ggMan = None
-
     def __init__(self, girl):
         self.ggMan = PoorPursuit(girl)
 
-    def give_eyes(self):
-        self.ggMan.give_eyes()
+    def give_glasses(self):
+        self.ggMan.give_glasses()
 
-    def give_foots(self):
-        self.ggMan.give_foots()
+    def give_boots(self):
+        self.ggMan.give_boots()
 
-    def give_arms(self):
-        self.ggMan.give_arms()
+    def give_gloves(self):
+        self.ggMan.give_gloves()
 
 
 # hot girl
-class BeautifulGirl():
-    __name = []
+class BeautifulGirl:
+    def __init__(self):
+        self._name = ''
 
     def get_name(self):
-        return self.__name
+        return self._name
 
     def set_name(self, value):
-        self.__name = value
+        self._name = value
 
 
 def main():
     girl = BeautifulGirl()
-    girl.set_name("韓湘嫦")
+    girl.set_name('Sandy')
 
     proxy = ProxyMan(girl)
 
-    proxy.give_eyes()
-    proxy.give_foots()
-    proxy.give_arms()
+    proxy.give_glasses()
+    proxy.give_boots()
+    proxy.give_gloves()
 
     pass
 
