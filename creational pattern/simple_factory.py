@@ -22,10 +22,6 @@ class IBeverageProvider(metaclass=ABCMeta):
 
 
 class GreenTea(IBeverageProvider):
-    def poured_cup(self):
-        print('poured green tea to the cup')
-        pass
-
     def add_material(self):
         print('add the green tea')
         pass
@@ -34,12 +30,12 @@ class GreenTea(IBeverageProvider):
         print('brew the hot water into green tea cup')
         pass
 
-
-class BlackTea(IBeverageProvider):
     def poured_cup(self):
-        print('poured black tea to the cup')
+        print('poured green tea to the cup')
         pass
 
+
+class BlackTea(IBeverageProvider):
     def add_material(self):
         print('add the black tea')
         pass
@@ -48,14 +44,37 @@ class BlackTea(IBeverageProvider):
         print('brew the hot water into black tea cup')
         pass
 
+    def poured_cup(self):
+        print('poured black tea to the cup')
+        pass
+
+
+class MilkTea(IBeverageProvider):
+    def add_material(self):
+        print('add the black tea')
+        pass
+
+    def brew(self):
+        print('brew the hot water into black tea cup')
+        pass
+
+    def poured_cup(self):
+        print('poured black tea to the cup and add the milk into black tea')
+        pass
+
 
 # Factory
 class SimpleBeverageFactory:
+    def __init__(self):
+        self._beverage = None
+
     def create_beverage(self, beverage_type):
         if beverage_type is 'GreenTea':
             self._beverage = GreenTea()
         elif beverage_type is 'BlackTea':
             self._beverage = BlackTea()
+        elif beverage_type is 'MilkTea':
+            self._beverage = MilkTea()
         else:
             pass
 
